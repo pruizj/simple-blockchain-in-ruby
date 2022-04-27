@@ -1,3 +1,4 @@
+require 'socket'
 def get_transactions_data
 
 	transactions_block ||= []
@@ -16,9 +17,12 @@ def get_transactions_data
 		puts "" 
 		puts "Who do you want to send it to ?"
 		to 	 = gets.chomp
-
+    
+    ip = IPSocket.getaddress(Socket.gethostname)
+    
 		transaction = Hash[from: "#{from}", to: "#{to}", 
-											 what: "#{what}", qty: "#{qty}"]
+											 what: "#{what}", qty: "#{qty}",
+                       IP: "#{ip}"]
 		transactions_block << transaction
 
 		puts "" 
